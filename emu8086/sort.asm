@@ -1,0 +1,26 @@
+MOV SI, 3000H
+MOV BX,[SI]
+DEC BX
+
+OUTER:
+    MOV CX,[SI]
+    DEC CX
+    ADD SI, 02H
+INNER:
+    MOV AL,[SI]
+    INC [SI]
+    CMP AL,[SI]
+    JNA LOOPING
+
+    XCHG AL,[SI]
+    DEC SI
+    MOV [SI],AL
+    INC SI
+
+    LOOPING:
+        LOOP INNER
+
+DEC BX
+MOV SI, 3000H
+JNZ OUTER
+HLT

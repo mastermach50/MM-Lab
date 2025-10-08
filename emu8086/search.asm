@@ -1,0 +1,24 @@
+MOV SI,3000H
+MOV DI,4000H
+
+LOAD:
+    MOV AL,[SI]
+    INC SI
+    MOV AH,[SI]
+    INC SI
+    MOV [DI],0000H
+
+LOOP1:
+    CMP [SI],AH
+    JE RESULT
+    DEC AL
+    CMP AL,0000H
+    JE EXIT
+    INC SI
+    JMP LOOP1
+
+RESULT:
+    MOV [DI],SI
+
+EXIT:
+    HLT 
